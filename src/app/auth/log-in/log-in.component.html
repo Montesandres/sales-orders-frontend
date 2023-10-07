@@ -1,0 +1,29 @@
+<div class="flex justify-content-center align-items-center w-full min-h-screen h-auto surface-100 px-2 lg:px-8 md:px-8">
+    <div class="card">
+   
+    </div>
+    <div
+      class="flex flex-column w-full lg:w-4 md:w-full gap-4 align-items-center border-1 border-green-50 bg-white shadow border-round justify-content-center">
+      <h2 class="text-black" >Iniciar Sesión</h2>
+      <img class="h-auto w-10rem" src="assets/logo.png" />
+      
+      <form [formGroup]="logInForm"  class="flex flex-column gap-4 justify-content-center" >
+        <div class="flex flex-column gap-2 justify-content-center   ">
+          <label htmlFor="userName">Nombre de usuario</label>
+          <input formControlName="userName" id="userName" name="userName" pInputText />
+        </div>
+  
+        <div class="flex flex-column gap-2" >
+          <label htmlFor="password">Contraseña</label>
+          <p-password formControlName="password" id="password" name="password" [feedback]="false" [toggleMask]="true"></p-password>
+          <div class="h-1rem"></div>
+          <p-button (click)="logIn()" [disabled]="this.logInForm.invalid" label="Iniciar Sesión" class="button flex justify-content-center"></p-button>
+          <div class="h-2rem"></div>
+        </div>
+      </form>
+  
+      <br>
+    </div>
+  </div>
+
+

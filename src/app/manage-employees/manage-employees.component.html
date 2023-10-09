@@ -1,0 +1,134 @@
+<div class="flex flex-column gap-2 px-4 mt-4">
+  <div class="flex flex-column gap-2 px-4">
+    <div class="flex justify-content-between">
+      <h2>Empleados</h2>
+      <div class="flex justify-content-end column-gap-2">
+        <p-button class="button">
+          <i class="pi pi-plus cursor-pointer" style="font-size: 1rem;"></i
+          >&nbsp; Crear empleado
+        </p-button>
+      </div>
+    </div>
+
+    <p-table
+      #dt1
+      [value]="employees"
+      [rows]="5"
+      dataKey="id"
+      [showCurrentPageReport]="true"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [loading]="loading"
+      [paginator]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="[
+          'name',
+          'lastName',
+          'document',
+          'documentNumber',
+          'address',
+          'neighborhood',
+        ]"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button
+            pButton
+            label="Borrar Filtros"
+            class="p-button-outlined"
+            icon="pi pi-filter-slash"
+            (click)="clear(dt1)"
+          ></button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Buscar"
+            />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>OK</th>
+          <th pSortableColumn="name">
+            <div class="flex align-items-center">
+              Nombres &nbsp;<p-sortIcon field="name"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="name"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+          <th pSortableColumn="lastName">
+            <div class="flex align-items-center">
+              Apellidos &nbsp;<p-sortIcon field="lastName"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="lastName"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+          <th pSortableColumn="documentNumber">
+            <div class="flex align-items-center">
+              Documento &nbsp;<p-sortIcon field="documentNumber"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="documentNumber"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+          <th pSortableColumn="address">
+            <div class="flex align-items-center">
+              Dirección &nbsp;<p-sortIcon field="address"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="address"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+          <th pSortableColumn="neighborhood">
+            <div class="flex align-items-center">
+              Barrio &nbsp;<p-sortIcon field="neighborhood"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="neighborhood"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-employee>
+        <tr>
+          <td>
+            <i
+              class="pi pi-check-circle cursor-pointer"
+              style="color: #afd630;"
+            ></i>
+          </td>
+          <td>{{ employee.name }}</td>
+          <td>
+            {{ employee.lastName }}
+          </td>
+          <td>{{ employee.documentNumber }}</td>
+          <td>{{ employee.address }}</td>
+          <td>{{ employee.neighborhood }}</td>
+          <td>
+            <p-button class="button-transparent" icon="pi pi-user-edit">
+            </p-button>
+          </td>
+          <td>
+            <p-button class="button-transparent" icon="pi pi-trash" styleClass="p-button-danger" > </p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

@@ -22,17 +22,16 @@ export class AuthService {
       this.http.post<Token>(`${this.authPath}/login`, { userName, password })
     );
     this.token = token;
-    localStorage.setItem('token', token.token);
+    sessionStorage.setItem('token', token.token);
     return token;
   }
 
-   async checkAutentication():Promise<Token|null>{
+  async checkAutentication():Promise<Token|null>{
 
-    const token = localStorage.getItem('token');  
+    const token = sessionStorage.getItem('token');  
    
     if (token){
       const tokenData = await firstValueFrom(this.http.get<Token>(`${this.authPath}/revalite`));
-      console.log(tokenData)
       this.token = tokenData;
       return tokenData
     }
@@ -42,6 +41,6 @@ export class AuthService {
 
   logOut() {
     this.token = undefined;
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
   }
 }

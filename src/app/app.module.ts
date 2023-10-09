@@ -18,6 +18,9 @@ import { PasswordModule } from 'primeng/password';
 import { HomeComponent } from './home/home.component';
 import { ToastModule } from 'primeng/toast';
 import { AuthInterceptor } from './common/interceptors/auth.interceptor';
+import { CardComponent } from './components/card/card.component';
+import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
+import { TableModule } from 'primeng/table';
 
 export const apiUri = 'http://localhost:3000';
 
@@ -27,6 +30,8 @@ export const apiUri = 'http://localhost:3000';
     LogInComponent,
     SidenavComponent,
     HomeComponent,
+    CardComponent,
+    ManageEmployeesComponent,
   ],
   imports: [
     AnimateModule,
@@ -43,7 +48,7 @@ export const apiUri = 'http://localhost:3000';
     BrowserAnimationsModule,
     PasswordModule,
     ToastModule,
-    
+    TableModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,

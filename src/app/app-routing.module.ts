@@ -4,6 +4,7 @@ import { LogInComponent } from './auth/log-in/log-in.component';
 import { HomeComponent } from './home/home.component';
 import { authGuard } from './auth/guards/auth.guard';
 import { ValidRoles } from './common/enums/valid-roles.enum';
+import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 
 const routes: Routes = [
 
@@ -20,7 +21,15 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate:[authGuard],
     data:{
-      roles:[ValidRoles.employee]
+      roles:[ValidRoles.employee,ValidRoles.sadmin]
+    }
+  },
+  {
+    path: 'employees',
+    component: ManageEmployeesComponent,
+    canActivate:[authGuard],
+    data:{
+      roles:[ValidRoles.adminEmployee,ValidRoles.adminManager,ValidRoles.sadmin]
     }
   },
   
